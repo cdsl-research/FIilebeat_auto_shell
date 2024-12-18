@@ -1,0 +1,42 @@
+extraEnvs: []
+daemonset:
+  filebeatConfig:
+    filebeat.yml: |
+      logging.level: info
+      filebeat.autodiscover:
+        providers:
+          - type: kubernetes
+            node: ${NODE_NAME}
+            hints.enabled: true
+            hints.default_config:
+              type: container
+              paths:
+                - /var/log/containers/*${data.kubernetes.container.id}.log
+              fields:
+                index: logstash
+      output.logstash:
+        hosts: ["logs-master:30714"]
+      setup.template:
+        name: "k8s"
+        pattern: "k8s-*"
+        enabled: false
+      setup.ilm.enabled: false
+  readinessProbe:
+    exec:
+      command:
+        - sh
+        - -c
+        - filebeat test output
+    initialDelaySeconds: 10
+    periodSeconds: 10
+    timeoutSeconds: 300
+    successThreshold: 1
+    failureThreshold: 3
+  resources:
+    limits:
+      memory: 1000Mi
+    requests:
+      memory: 900Mi
+  secretMounts: []
+deployment:
+  extraEnvs: []

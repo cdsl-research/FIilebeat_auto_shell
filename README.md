@@ -7,11 +7,13 @@
 実行した環境は以下の通りです
 
 **ログサーバ**
+
 Ubuntu 24.04.1
 k3s：v1.30.5+k3s1
 helm：v3.16.1
 
 **ログ収集対象のサーバ**
+
 Ubuntu 24.04.1
 k3s：v1.30.5+k3s1
 
@@ -62,6 +64,7 @@ mv ~/.kube/config.tmp ~/.kube/config
 ```
 
 **実行結果**
+
 対象のVMに，elasticというネームスペースでElasticsearchに接続するためのSecretとFilebeatのPodが作成されます．
 ```
 cdsl@logs-master:~/log_tool$ ./create_filebeat.sh fb-values.yaml cdsl arita-master2
@@ -123,6 +126,7 @@ mv ~/.kube/config.tmp ~/.kube/config
 ```
 
 **実行結果**
+
 対象のVMの，Elasticsearchに接続するためのSecretとFilebeatのPod，それにelasticというネームスペースが削除される．
 ```
 cdsl@logs-master:~/log_tool$ ./delete_filebeat.sh cdsl arita-master2

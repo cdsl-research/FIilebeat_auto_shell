@@ -3,23 +3,19 @@
 しかし，Kubernetesとhelmを使いFilebeatを作成するとき，収集対象のkubernetesクラスタにもhelmをインストールしたり，yamlファイルを送る必要があり，少々手間がかかります．
 そこで，Kubernetes環境と元となるyamlファイルさえあれば，ログサーバからkubernetesクラスタにFilebeatを作成してくれるシェルを組みました．
 
-# 環境
-実行した環境は以下の通りです
-
-**ログサーバ**
-
-* Ubuntu 24.04.1
-* k3s：v1.30.5+k3s1
-* helm：v3.16.1
-
-**ログ収集対象のサーバ**
-
-* Ubuntu 24.04.1
-* k3s：v1.30.5+k3s1
-
-# 使い方
+# 機能
 FIlebeatを作成してくれるcreate/_filebeat.shと，シェルで作成したFilebeatを削除してくれるdelete/_filebeat.shがある．
 
+ログサーバのkubectlコンフィグファイルを書き換え，シェル実行中だけ対象kubernetesクラスタのkubectlコマンドを打てるようにしている．
+
+~/.kube/configファイルにあるkubectlコンフィグファイルを書き換えているので，このコンフィグファイルを用意する必要がある．
+
+その後，`create/_filebeat.sh`では，elasticという名前のネームスペースを作り，sercretを作成し，helmでfilebeatをインストールします．
+
+その後，`delete/_filebeat.sh`では先ほどとは逆に，helmでfilebeatをアンインストールし，sercretを削除し，elasticという名前のネームスペースを削除します．
+
+
+# 使い方
 ## Filebeatを作成
 
 kubectlコマンドを打つためのサーバとmasterノードを分離している場合と，分離していない場合で必要な引数の数がひとつ変わります.

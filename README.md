@@ -9,13 +9,13 @@ FIlebeatを作成してくれるcreate/_filebeat.shと，シェルで作成し�
 **create/_filebeat.sh**
 * ログサーバのkubectlコンフィグファイルのシェル実行中の書き換え
 * elasticのネームスペースの作成
-* sercretの作成
+* secretの作成
 * filebeatのインストール
 
 **delete/_filebeat.sh**
 * ログサーバのkubectlコンフィグファイルのシェル実行中の書き換え
 * filebeatのアンインストール
-* sercretの削除
+* secretの削除
 * elasticのネームスペースの削除
 
 # 使い方
@@ -26,7 +26,7 @@ kubectlコマンドを打つためのサーバとmasterノードを分離して�
 
 **kubectlコマンド用サーバありの場合の実行コマンド**
 ```
-./create_filebeat.sh [yamlファイル] [対象クラスタのユーザ名] [ 対象クラスタのkubectlサーバ] [対象クラスタのマスターノード]
+./create_filebeat.sh [yamlファイル] [対象クラスタのユーザ名] [対象クラスタのkubectlサーバ] [対象クラスタのマスターノード]
 ```
 **kubectlコマンド用サーバなしの場合の実行コマンド**
 ```
@@ -45,7 +45,7 @@ kubectlコマンドを打つためのサーバとmasterノードを分離して�
 
 **kubectlコマンド用サーバありの場合の実行コマンド**
 ```
-./delete_filebeat.sh [対象クラスタのユーザ名] [ 対象クラスタのkubectlサーバ] [対象クラスタのマスターノード]
+./delete_filebeat.sh [対象クラスタのユーザ名] [対象クラスタのkubectlサーバ] [対象クラスタのマスターノード]
 ```
 **kubectlコマンド用サーバなしの場合の実行コマンド**
 ```

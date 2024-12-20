@@ -58,8 +58,8 @@ kubectlコマンドを打つためのサーバとmasterノードを分離して�
 ![image](https://github.com/user-attachments/assets/dba6449d-69c7-4c3c-ae55-d87f9d1ba478)
 
 
-# 仕組み・注意点
+# 注意点
 ログサーバのkubectlコマンドのconfigファイルを，ログ収集対象のKubernetesクラスタのconfigファイルで一時的に書き換えている．
-それにより，kubectlのコマンドで通信が行われるクラスタを一時的に変更することができる．
-このシェルは，~/.kube/configのkubectl設定ファイルがあり，対象のVMのconfigファイルに読み込み権限がないと実行できません．
+そのため，~/.kube/configのkubectl設定ファイルがあり，対象のVMのconfigファイルに読み込み権限，ログサーバのconfigファイルの書き込み権限がないと実行できない．
+また，create_filebeat.sh内にElasticsearchのユーザ名とパスワードを入れなければならない．
 
